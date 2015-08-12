@@ -15,6 +15,13 @@ public class HelloMavenTest extends FunctionalTestCase {
 		runFlowAndExpect("mavenFlow", "Hello World");
 	}
 	
+	@Test
+	public void retrieveFlightsReturnsJson() throws Exception {
+		MuleEvent event = runFlow("retrieveFlights");
+		String contenttype = event.getMessage().getOutboundProperty("Content-Type"); 
+		assertEquals("application/json",contenttype);
+	}
+	
 	@Override
 	protected String getConfigFile() {
 		// TODO Auto-generated method stub
